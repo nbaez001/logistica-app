@@ -1,0 +1,46 @@
+@import "../../../../../../assets/styles/scss/views/table";
+
+.page {
+  .table-resultados {
+    // margin-bottom: 0px;
+    .table-container {
+      max-height: 400px;
+    }
+  }
+}
+
+@include mat-table-columns(
+  (
+    id: (
+      width: 2rem,
+    ),
+    nombre: (
+      width: 12rem,
+    ),
+    codigo: (
+      width: 6rem,
+    ),
+    nomTipoProveedor: (
+      width: 7rem,
+    ),
+    documento: (
+      width: 6rem,
+    ),
+    telefono: (
+      width: 6rem,
+    ),
+    email: (
+      width: 12rem,
+    ),
+    direccion: (
+      width: 10rem,
+    ),
+    activo: (
+      width: 4rem,
+    ),
+    opt: (
+      width: 7.5rem,
+      text-align: right,
+    ),
+  )
+);

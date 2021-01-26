@@ -1,0 +1,35 @@
+@import "../../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        nombre: (
+            width: 7rem,
+        ),
+        codigo: (
+            width: 6rem,
+        ),
+        fecha: (
+            width: 6rem,
+        ),
+        estado: (
+            width: 5rem,
+        ),
+        opt: (
+            width: 5rem,
+        ),
+    )
+);
+
+.subtitulo {
+    margin-top: 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}

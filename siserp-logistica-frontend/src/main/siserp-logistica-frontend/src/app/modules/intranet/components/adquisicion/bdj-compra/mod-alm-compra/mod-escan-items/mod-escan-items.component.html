@@ -1,0 +1,41 @@
+<mat-toolbar class="mat-primary mat-dialog-header">
+    <span>{{dataDialog.titulo}}</span>
+    <button tabindex="-1" mat-icon-button [mat-dialog-close]="null">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+<div mat-dialog-content>
+    <form [formGroup]="formularioGrp" class="example-container">
+        <mat-grid-list cols="12" rowHeight="56px">
+            <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}">
+                <mat-form-field>
+                    <mat-label>Codigos de barra</mat-label>
+                    <input placeholder="Nuevo codigo" [matChipInputFor]="listaCodigoBarra"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)" type="number">
+
+                    <mat-chip-list #listaCodigoBarra aria-label="Codigo selection">
+                    </mat-chip-list>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}">
+                <mat-form-field>
+                    <mat-label>Cantidad</mat-label>
+                    <input matInput formControlName="cantProductos" placeholder="Cantidad de productos escaneados"
+                        type="number">
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+
+    <mat-chip *ngFor="let codigo of listaCodigos" [selectable]="selectable" [removable]="removable"
+        (removed)="remove(codigo)">
+        {{codigo.codigo}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+</div>
+<div mat-dialog-actions align="center">
+    <button mat-raised-button color="primary" type="button" (click)="guardarCodigos()" [class.spinner]="guardar"
+        [disabled]="guardar">Aceptar</button>
+    <button mat-button type="button" [mat-dialog-close]="">Salir</button>
+</div>

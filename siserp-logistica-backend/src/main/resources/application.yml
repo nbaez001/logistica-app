@@ -1,0 +1,37 @@
+spring:
+  profiles:
+    active: '@spring.profiles.active@'
+swagger:
+  api:
+    title: "Spring Boot REST API"
+    description: "Clientes REST API"
+    license: "Apache 2.0"
+    termsOfServiceUrl: "http://www.apache.org/licenses/LICENSE-2.0.html"
+    version: 1.0.0
+    controller:
+      basepackage: com.besoft.siserp.pos.controller
+    contact:
+      nombres : "Nerio Baez"
+      web : "http://besoft-ti.blogspot.com"
+      email: "nbaez001@gmail.com"
+---
+server:
+  port: 8082
+  servlet:
+    context-path: /siserp-logistica-backend
+spring:
+  profiles: dev
+  application:
+    name: siserp-logistica-backend
+  datasource:
+    driverClassName: oracle.jdbc.OracleDriver
+    url: "jdbc:oracle:thin:@localhost:1521:orcl"
+    password: "1234"
+    username: "ERPLGTC"    hikari:      maximum-pool-size: 5      connection-timeout: 60000
+---
+spring:
+  profiles: qa
+  application:
+    name: siserp-logistica-backend
+  datasource:
+    jndi-name: java:/ERPLGTCNoXADS

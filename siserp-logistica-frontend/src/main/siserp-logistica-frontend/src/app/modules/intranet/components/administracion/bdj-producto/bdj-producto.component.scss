@@ -1,0 +1,42 @@
+@import "../../../../../../assets/styles/scss/views/table";
+
+.page {
+  .table-resultados {
+    // margin-bottom: 0px;
+    .table-container {
+      max-height: 400px;
+    }
+  }
+}
+
+@include mat-table-columns(
+  (
+    id: (
+      width: 2rem,
+    ),
+    nombre: (
+      width: 12rem,
+    ),
+    codigo: (
+      width: 5rem,
+    ),
+    tipo: (
+      width: 6rem,
+    ),
+    marca: (
+      width: 6rem,
+    ),
+    unidadMedida: (
+      width: 6rem,
+    ),
+    descripcion: (
+      width: 12rem,
+    ),
+    activo: (
+      width: 4.5rem,
+    ),
+    opt: (
+      width: 5rem,
+    ),
+  )
+);

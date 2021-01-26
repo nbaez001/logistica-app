@@ -1,0 +1,17 @@
+spring:
+  profiles:
+    active: '@spring.profiles.active@'
+---
+server:
+  port: 8080
+  servlet:
+    context-path: /siserp-logistica
+spring:
+  profiles: dev
+  application:
+    name: siserp-logistica
+---
+spring:
+  profiles: qa
+  application:
+    name: siserp-logistica

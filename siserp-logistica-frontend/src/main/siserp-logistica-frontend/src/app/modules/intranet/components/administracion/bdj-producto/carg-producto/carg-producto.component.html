@@ -1,0 +1,139 @@
+<mat-toolbar class="mat-primary mat-dialog-header">
+    <span>{{dataDialog.titulo}}</span>
+    <button tabindex="-1" mat-icon-button [mat-dialog-close]="null">
+        <mat-icon>close</mat-icon>
+    </button>
+</mat-toolbar>
+<div mat-dialog-content>
+    <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="formularioGrp">
+            <ng-template matStepLabel>Carga</ng-template>
+            <form [formGroup]="formularioGrp" *ngIf="formErrors">
+                <mat-grid-list cols="12" rowHeight="56px">
+                    <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Almacen</mat-label>
+                            <mat-select formControlName="almacen" (selectionChange)="comboEstante()">
+                                <mat-option *ngFor="let almacen of listaAlmacen" [value]="almacen">
+                                    {{almacen.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Estante</mat-label>
+                            <mat-select formControlName="estante">
+                                <mat-option *ngFor="let estante of listaEstante" [value]="estante">
+                                    {{estante.nombre}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 6, lg: 6, xl: 6}">
+                        <mat-form-field>
+                            <mat-label>Cargar archivo</mat-label>
+                            <input matInput type="text" formControlName="nombreArchivoProductos"
+                                placeholder="Cargar archivo" readonly>
+                            <button mat-icon-button matTooltip="Buscar archivo" type="button" class="btn-icon-input"
+                                color="primary" (click)="openInput($event)">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                            <mat-error *ngIf="formErrors.nombreArchivoProductos">{{formErrors.nombreArchivoProductos}}
+                            </mat-error>
+                            <input id="archivoProductos" class="d-none" type="file"
+                                accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                                (change)="cargarArchivoProductos($event)" multiple="false">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class="ta-center">
+                    <button mat-raised-button color="primary" (click)="validarArchivoProductos()">Siguiente</button>
+                </div>
+            </form>
+        </mat-step>
+        <mat-step [completed]="paso2Completado">
+            <ng-template matStepLabel>Validacion</ng-template>
+            <h5 class="subtitulo" style="color: red; text-align: center;" *ngIf="!paso2Completado">
+                Se encontro los
+                siguientes errores en la lista:</h5>
+            <h5 class="subtitulo" style="color: blue; text-align: center;" *ngIf="paso2Completado">
+                La lista cargada se
+                encuentra sin errores, por favor proceda a cargarlo presionando el boton SIGUIENTE</h5>
+            <mat-selection-list #shoes [multiple]="false">
+                <mat-list-option *ngFor="let producto of listaProductoCargarExcelErrores" [value]="producto"
+                    (click)="onAreaListControlChanged(shoes)">
+                    {{producto.validacion}}
+                </mat-list-option>
+            </mat-selection-list>
+
+            <div class="table-container table-overflow" style="margin-top: 10px;">
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="marca">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> MARCA </th>
+                        <td mat-cell *matCellDef="let row"> {{row.marca}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="idtUnidadMedida">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> IDT_UNIDAD_MEDIDA </th>
+                        <td mat-cell *matCellDef="let row"> {{row.idtUnidadMedida}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="nomUnidadMedida">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOM_UNIDAD_MEDIDA </th>
+                        <td mat-cell *matCellDef="let row"> {{row.nomUnidadMedida}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="codigo">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> CODIGO </th>
+                        <td mat-cell *matCellDef="let row"> {{row.codigo}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> NOMBRE </th>
+                        <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="descripcion">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> DESCRIPCION </th>
+                        <td mat-cell *matCellDef="let row"> {{row.descripcion}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="cantidad">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> CANTIDAD </th>
+                        <td mat-cell *matCellDef="let row"> {{row.cantidad}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="precio">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> PRECIO </th>
+                        <td mat-cell *matCellDef="let row"> {{row.precio}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+                <div class="empty" *ngIf="!isLoading && dataSource === null">
+                    No existe datos para mostrar en la tabla
+                </div>
+            </div>
+            <div class="ta-center" style="margin-top: 5px;">
+                <button mat-button (click)="anterior()">Anterior</button>
+                <button mat-raised-button color="primary" [disabled]="!paso2Completado"
+                    (click)="registrarArchivoProductos()">Siguiente</button>
+            </div>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Completado</ng-template>
+            <div class="image">
+                <p *ngIf="flagErrorMsg">Ha ocurrido un ERROR al cargar los datos: {{errorMsg}}</p>
+                <img *ngIf="flagErrorMsg" src="assets/images/icons/alerta/error.png" alt="Error">
+            </div>
+
+            <div class="image">
+                <p *ngIf="flagSuccessMsg">Se ha cargado correctamente la lista de productos</p>
+                <img *ngIf="flagSuccessMsg" src="assets/images/icons/alerta/exito.png" alt="Exito">
+            </div>
+
+            <div class="ta-center">
+                <button mat-raised-button color="primary" (click)="finalizar()">Finalizar</button>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

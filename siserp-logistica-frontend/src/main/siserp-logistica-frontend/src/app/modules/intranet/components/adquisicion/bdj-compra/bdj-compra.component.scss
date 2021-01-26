@@ -1,0 +1,40 @@
+@import "../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        codigo: (
+            width: 6rem,
+        ),
+        tipoComprobante: (
+            width: 5rem,
+        ),
+        nroComprobante: (
+            width: 6rem,
+        ),
+        montoTotal: (
+            width: 6rem,
+        ),
+        fecha: (
+            width: 5rem,
+        ),
+        estadoCompra: (
+            width: 6rem,
+        ),
+        observacion: (
+            width: 15rem,
+        ),
+        activo: (
+            width: 5rem,
+        ),
+        opt: (
+            width: 7.5rem,
+        ),
+    )
+);

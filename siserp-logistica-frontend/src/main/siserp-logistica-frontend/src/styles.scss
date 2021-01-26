@@ -1,0 +1,28 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+}
+
+// SNACKBAR STYLES
+::ng-deep .success-snackbar {
+    background: #2aaf49;
+}
+
+::ng-deep .error-snackbar {
+    background: #e24d53;
+}
+
+::ng-deep .warning-snackbar {
+    background-color: orange;
+}
+
+::ng-deep .info-snackbar {
+    background: #00b1ea;
+}
+//END - SNACKBAR STYLES

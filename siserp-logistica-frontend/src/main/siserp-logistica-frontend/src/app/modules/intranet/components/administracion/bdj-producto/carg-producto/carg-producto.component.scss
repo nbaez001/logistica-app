@@ -1,0 +1,80 @@
+table.sjs-table > tbody > tr:first-child > td {
+    background-color: lightgreen;
+}
+
+@import "../../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        marca: (
+            width: 5rem,
+        ),
+        idtUnidadMedida: (
+            width: 4rem,
+        ),
+        nomUnidadMedida: (
+            width: 5rem,
+        ),
+        codigo: (
+            width: 5rem,
+        ),
+        nombre: (
+            width: 5rem,
+        ),
+        descripcion: (
+            width: 5rem,
+        ),
+        cantidad: (
+            width: 4rem,
+        ),
+        precio: (
+            width: 4rem,
+        ),
+    )
+);
+
+::ng-deep mat-dialog-container {
+    padding-bottom: 8px !important;
+}
+
+.ta-center {
+    text-align: center;
+}
+
+.mat-list-option {
+    height: auto !important;
+    margin: 8px auto !important;
+}
+
+// mat-horizontal-stepper {
+//     padding-bottom: 0px !important;
+// }
+
+::ng-deep .mat-horizontal-content-container {
+    padding-bottom: 5px !important;
+}
+
+.image {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    p {
+        text-align: left;
+        margin-bottom: 0px;
+    }
+    img {
+        height: 50px !important;
+        width: 50px !important;
+    }
+}
+
+.table-overflow {
+    max-height: 240px !important;
+}

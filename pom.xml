@@ -1,0 +1,14 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.besoft.siserp.lgtc</groupId>
+  <artifactId>siserp-logistica-app</artifactId>
+  <version>TRUNK</version>
+  <packaging>pom</packaging>
+  <name>siserp-logistica-app</name>
+  <description>Siserp logistica - Aplicacion</description>
+  <modules>
+  	<module>siserp-logistica-frontend</module>
+  	<module>siserp-logistica-backend</module>
+  	<module>siserp-logistica</module>
+  </modules>
+</project>

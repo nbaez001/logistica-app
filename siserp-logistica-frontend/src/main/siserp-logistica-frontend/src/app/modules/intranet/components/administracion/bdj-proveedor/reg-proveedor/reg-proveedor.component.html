@@ -1,0 +1,187 @@
+<mat-toolbar class="mat-primary mat-dialog-header">
+  <span>{{dataDialog.titulo}}</span>
+  <button tabindex="-1" mat-icon-button [mat-dialog-close]="null">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<div mat-dialog-content>
+  <form [formGroup]="formularioGrp">
+    <mat-grid-list cols="12" rowHeight="56px">
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Tipo proveedor</mat-label>
+          <mat-select formControlName="tipoProveedor">
+            <mat-option *ngFor="let tipoProveedor of listaTipoProveedor" [value]="tipoProveedor">
+              {{tipoProveedor.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Tipo documento</mat-label>
+          <mat-select formControlName="tipoDocumento">
+            <mat-option *ngFor="let tipoDocumento of listaTipoDocumento" [value]="tipoDocumento">
+              {{tipoDocumento.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Nro {{formularioGrp.get('tipoDocumento').value?formularioGrp.get('tipoDocumento').value.nombre:'Documento'}}
+          </mat-label>
+          <input matInput formControlName="nroDocumento" type="number">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Apellido paterno</mat-label>
+          <input matInput formControlName="apellidoPat" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Apellido materno</mat-label>
+          <input matInput formControlName="apellidoMat" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='1'">
+        <mat-form-field>
+          <mat-label>Razon social</mat-label>
+          <input matInput formControlName="razonSocial" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='1'">
+        <mat-form-field>
+          <mat-label>Nombre comercial</mat-label>
+          <input matInput formControlName="nombreComercial" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='1'">
+        <mat-form-field>
+          <mat-label>Jiro negocio</mat-label>
+          <input matInput formControlName="giroNegocio" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Telefono/ celular</mat-label>
+          <input matInput formControlName="telefono" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Fecha nacimiento</mat-label>
+          <input matInput formControlName="fecNacimiento" [matDatepicker]="picker1" placeholder="Fecha nacimiento">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='1'">
+        <mat-form-field>
+          <mat-label>Fecha fundacion</mat-label>
+          <input matInput formControlName="fecFundacion" [matDatepicker]="picker2" placeholder="Fecha fundacion">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Genero</mat-label>
+          <mat-select formControlName="genero">
+            <mat-option *ngFor="let genero of listaGenero" [value]="genero">
+              {{genero.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}"
+        *ngIf="formularioGrp.get('tipoProveedor').value.valor=='2'">
+        <mat-form-field>
+          <mat-label>Estado civil</mat-label>
+          <mat-select formControlName="estadoCivil">
+            <mat-option *ngFor="let estadoCivil of listaEstadoCivil" [value]="estadoCivil">
+              {{estadoCivil.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Departamento</mat-label>
+          <mat-select formControlName="departamento" (selectionChange)="comboProvincia()">
+            <mat-option *ngFor="let departamento of ubigeoDepartamentoListarResponse" [value]="departamento">
+              {{departamento.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Provincia</mat-label>
+          <mat-select formControlName="provincia" (selectionChange)="comboDistrito()">
+            <mat-option *ngFor="let provincia of ubigeoProvinciaListarResponse" [value]="provincia">
+              {{provincia.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 4, xl: 4}">
+        <mat-form-field>
+          <mat-label>Distrito</mat-label>
+          <mat-select formControlName="distrito">
+            <mat-option *ngFor="let distrito of ubigeoDistritoListarResponse" [value]="distrito">
+              {{distrito.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 12, md: 8, lg: 8, xl: 4}">
+        <mat-form-field>
+          <mat-label>Direccion</mat-label>
+          <input matInput formControlName="direccion" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-grid-list cols="12" rowHeight="75px">
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}">
+        <mat-form-field>
+          <textarea matInput formControlName="observacion" placeholder="Observacion" [Uppercased]></textarea>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" type="button" (click)="registrar()" [class.spinner]="guardar"
+    [disabled]="guardar">Guardar</button>
+  <button mat-button [mat-dialog-close]="">Salir</button>
+</div>

@@ -1,0 +1,181 @@
+<mat-toolbar class="mat-primary mat-dialog-header">
+  <span>{{dataDialog.titulo}}</span>
+  <button tabindex="-1" mat-icon-button [mat-dialog-close]="null">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-toolbar>
+<div mat-dialog-content>
+  <form [formGroup]="formularioGrp">
+    <mat-grid-list cols="12" rowHeight="56px">
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Tipo documento</mat-label>
+          <mat-select formControlName="tipoDocumento">
+            <mat-option *ngFor="let tipoDocumento of listaTipoDocumento" [value]="tipoDocumento">
+              {{tipoDocumento.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Nro documento</mat-label>
+          <input matInput formControlName="nroDocumento" type="number">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Apellido paterno</mat-label>
+          <input matInput formControlName="apellidoPat" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Apellido materno</mat-label>
+          <input matInput formControlName="apellidoMat" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Cargo</mat-label>
+          <input matInput formControlName="cargo" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Telefono/ celular</mat-label>
+          <input matInput formControlName="telefono" type="text">
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Fecha nacimiento</mat-label>
+          <input matInput formControlName="fecNacimiento" [matDatepicker]="picker1" placeholder="Fecha nacimiento">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Genero</mat-label>
+          <mat-select formControlName="genero">
+            <mat-option *ngFor="let genero of listaGenero" [value]="genero">
+              {{genero.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Estado civil</mat-label>
+          <mat-select formControlName="estadoCivil">
+            <mat-option *ngFor="let estadoCivil of listaEstadoCivil" [value]="estadoCivil">
+              {{estadoCivil.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Departamento</mat-label>
+          <mat-select formControlName="departamento" (selectionChange)="comboProvincia()">
+            <mat-option *ngFor="let departamento of ubigeoDepartamentoListarResponse" [value]="departamento">
+              {{departamento.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Provincia</mat-label>
+          <mat-select formControlName="provincia" (selectionChange)="comboDistrito()">
+            <mat-option *ngFor="let provincia of ubigeoProvinciaListarResponse" [value]="provincia">
+              {{provincia.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Distrito</mat-label>
+          <mat-select formControlName="distrito">
+            <mat-option *ngFor="let distrito of ubigeoDistritoListarResponse" [value]="distrito">
+              {{distrito.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </mat-grid-tile>
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 6, md: 4, lg: 3, xl: 3}">
+        <mat-form-field>
+          <mat-label>Direccion</mat-label>
+          <input matInput formControlName="direccion" type="text" [Uppercased]>
+        </mat-form-field>
+      </mat-grid-tile>
+
+      <mat-grid-tile [ResponsiveRows]="{xs: 12, sm: 12, md: 12, lg: 12, xl: 12}">
+        <button mat-raised-button color="primary" type="button" (click)="registrar()" [class.spinner]="guardar"
+          [disabled]="guardar" *ngIf="!represLegalEdit">Guardar</button>
+        <button mat-raised-button color="primary" type="button" (click)="actualizar()" [class.spinner]="modificar"
+          [disabled]="modificar" *ngIf="represLegalEdit">Modificar</button>
+        <button mat-raised-button type="button" (click)="limpiar()">Limpiar</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+
+  <div class="table-container clear-both">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> N° </th>
+        <td mat-cell *matCellDef="let i = index"> {{paginator.pageSize * paginator.pageIndex + i + 1}} </td>
+      </ng-container>
+      <ng-container *ngFor="let column of columnsGrilla" [matColumnDef]="column.columnDef">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.header }} </th>
+        <td mat-cell *matCellDef="let row"> {{ column.cell(row) }} </td>
+      </ng-container>
+      <ng-container matColumnDef="opt" stickyEnd>
+        <th mat-header-cell *matHeaderCellDef>Opc.</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button matTooltip="Editar representante legal" (click)="cargarRepresLegal(element)">
+            <mat-icon>create</mat-icon>
+          </button>
+          <button mat-icon-button matTooltip="Eliminar categoria" (click)="eliminar(element)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div class="empty" *ngIf="!isLoading && dataSource === null">
+      No existe datos para mostrar en la tabla
+    </div>
+
+    <div *ngIf="isLoading" class="spinerTable">
+      <mat-progress-spinner [diameter]="35" color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+
+    <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button [mat-dialog-close]="">Salir</button>
+</div>

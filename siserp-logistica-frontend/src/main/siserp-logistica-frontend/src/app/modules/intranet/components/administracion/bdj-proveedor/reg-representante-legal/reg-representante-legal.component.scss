@@ -1,0 +1,34 @@
+@import "../../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        cargo: (
+            width: 7rem,
+        ),
+        nombre: (
+            width: 12rem,
+        ),
+        tipoDocumento: (
+            width: 8rem,
+        ),
+        nroDocumento: (
+            width: 6rem,
+        ),
+        telefono: (
+            width: 6rem,
+        ),
+        email: (
+            width: 8rem,
+        ),
+        opt: (
+            width: 5rem,
+        ),
+    )
+);

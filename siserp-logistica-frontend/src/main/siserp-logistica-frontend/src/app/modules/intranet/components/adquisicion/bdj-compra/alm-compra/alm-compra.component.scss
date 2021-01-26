@@ -1,0 +1,34 @@
+@import "../../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        producto: (
+            width: 7rem,
+        ),
+        cantidad: (
+            width: 5rem,
+        ),
+        precioCompra: (
+            width: 5rem,
+        ),
+        ganancia: (
+            width: 4rem,
+        ),
+        precio: (
+            width: 5rem,
+        ),
+        ubicacion: (
+            width: 12rem,
+        ),
+        opt: (
+            width: 2.5rem,
+        ),
+    )
+);

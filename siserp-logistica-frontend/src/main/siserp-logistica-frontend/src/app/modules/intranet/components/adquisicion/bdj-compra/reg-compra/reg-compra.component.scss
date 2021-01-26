@@ -1,0 +1,87 @@
+@import "../../../../../../../assets/styles/scss/views/table";
+
+.table-container {
+    max-height: 400px;
+}
+
+@include mat-table-columns(
+    (
+        id: (
+            width: 2rem,
+        ),
+        producto: (
+            width: 7rem,
+        ),
+        precio: (
+            width: 7rem,
+        ),
+        cantidad: (
+            width: 7rem,
+        ),
+        cantDaniado: (
+            width: 7rem,
+        ),
+        cantPerfecto: (
+            width: 4rem,
+        ),
+        total: (
+            width: 4rem,
+        ),
+        opt: (
+            width: 2.5rem,
+        ),
+    )
+);
+
+.subtitulo {
+    margin-top: 12px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.table-container {
+    td {
+        mat-form-field {
+            max-width: calc(100% - 5px) !important;
+            margin-left: 0px !important;
+            margin-right: 5px !important;
+            margin-top: 4px;
+        }
+
+        ::ng.deep .mat-form-field-subscript-wrapper {
+            margin-top: 3px !important;
+            // top: calc(100% - 1.7916666667em);
+        }
+
+        ::ng-deep .mat-form-field-wrapper {
+            padding-bottom: 13px !important;
+        }
+
+        ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+            padding: 0.4em 0px !important;
+        }
+        ::ng-deep .mat-form-field-label-wrapper {
+            top: -1.5em;
+        }
+
+        ::ng-deep
+            .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+            .mat-form-field-label {
+            transform: translateY(-1.1em) scale(0.75);
+            width: 133.33333%;
+        }
+    }
+}
+
+// ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+//     padding: 0.4em 0px !important;
+// }
+// ::ng-deep .mat-form-field-label-wrapper {
+//     top: -1.5em;
+// }
+
+// ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//     transform: translateY(-1.1em) scale(0.75);
+//     width: 133.33333%;
+// }
